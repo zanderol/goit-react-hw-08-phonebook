@@ -1,16 +1,20 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/authOperations';
+import { AppRouter } from 'components/AppRouter';
+import { Navigation } from 'components/Navigation/Navigation';
+
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Navigation />
+      <AppRouter />
+    </>
   );
 };
