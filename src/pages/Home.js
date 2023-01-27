@@ -5,10 +5,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const Welcome = styled.h1`
-  color: #77529e;
   font-weight: 700;
   font-size: 48;
   text-align: center;

@@ -30,7 +30,7 @@ export default function Contacts() {
       <ContactForm />
       {isLoading && !error && (
         <div>
-          <InfinitySpin width="200" color="#4fa94d" />
+          <InfinitySpin width="200" color="orange" />
         </div>
       )}
       {!isLoading && contacts.length > 0 && (

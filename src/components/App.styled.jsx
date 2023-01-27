@@ -8,8 +8,6 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 30px;
   text-align: center;
-  border: 5px solid #77529e;
-  border-radius: 20px;
 `;
 
 export const Button = styled.button`
@@ -21,9 +19,9 @@ export const Button = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 5px;
-  border: 3px solid #cca8e9;
+  border: 3px solid grey;
 
   &:hover {
-    background-color: #c3bef0;
+    background-color: orange;
   }
 `;

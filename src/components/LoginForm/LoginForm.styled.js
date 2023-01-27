@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.h2`
   padding: 15px;
-  background-color: #cca8e9;
+  background-color: grey;
   border-radius: 10px 10px 0 0;
 `;
 
@@ -11,9 +11,8 @@ export const Form = styled.form`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #cadefc;
+  background-color: lightgrey;
   border-radius: 0 0 10px 10px;
-  border: 3px solid #cca8e9;
 `;
 
 export const LabelGroup = styled.div`
@@ -31,10 +30,9 @@ export const LabelTitle = styled.span`
 `;
 
 export const Input = styled.input`
-  border: 1px solid #cca8e9;
   height: 20px;
   &:hover,
   &:focus {
-    outline: 1px solid #cca8e9;
+    outline: 1px solid orange;
   }
 `;
