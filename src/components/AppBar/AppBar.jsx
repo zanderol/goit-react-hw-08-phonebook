@@ -1,23 +1,16 @@
-import { Wrapper } from './AppBar.styled';
-import Container from 'components/Container';
-import Logo from './Logo';
-import Navigations from './Navigations';
-import AuthNav from './AuthNav';
-import UserBar from './Userbar';
-import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+import { Navigation } from '../Navigation/Navigation';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { AuthNav } from '../AuthNav/AuthNav';
+import { useAuth } from 'hooks';
+import { Header } from './AppBar.styled';
 
-function AppBar() {
-  const isLoggedIn = useSelector(state => getIsLoggedIn(state));
+export const AppBar = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <Container>
-      <Wrapper>
-        <Logo />
-        <Navigations />
-        {isLoggedIn ? <UserBar /> : <AuthNav />}
-      </Wrapper>
-    </Container>
+    <Header>
+      <Navigation />
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+    </Header>
   );
-}
-
-export default AppBar;
+};

@@ -1,47 +1,42 @@
-import { Formik, Form, ErrorMessage } from 'formik';
-import { Title, Label, TitleInput, Input, Button } from './LoginForm.styled';
-import useLoginUser from 'hooks/useLoginUser';
-import { userLoginSchema } from 'utilities/validationSchema';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
+import { Form, Title, LabelGroup, LabelTitle, Input } from './LoginForm.styled';
+import { Button } from '../App.styled';
 
-function LoginForm() {
-  const { onSubmitForm } = useLoginUser();
+export const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
 
   return (
     <>
-      <Title>Login</Title>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={onSubmitForm}
-        validationSchema={userLoginSchema}
-      >
-        {({ values, handleChange, handleSubmit, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <Label>
-              <TitleInput>Your e-mail adress?</TitleInput>
-              <Input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                value={values.email}
-              />
-              <ErrorMessage name="email" component="div" />
-            </Label>
-            <Label>
-              <TitleInput>Your password?</TitleInput>
-              <Input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                value={values.password}
-              />
-              <ErrorMessage name="password" component="div" />
-            </Label>
-            <Button type="submit">{isSubmitting ? '...' : 'Login'}</Button>
-          </Form>
-        )}
-      </Formik>
+      <Title>Log in to your profile</Title>
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <LabelGroup>
+          <LabelTitle>Email</LabelTitle>
+          <Input
+            type="email"
+            name="email"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            title="Email may contain letter, digits and @ symbol. For example Neo33@matrix.com"
+            required
+          />
+
+          <LabelTitle>Password</LabelTitle>
+          <Input type="password" name="password" minLength="8" required />
+        </LabelGroup>
+        <Button type="submit">Log In</Button>
+      </Form>
     </>
   );
-}
-
-export default LoginForm;
+};

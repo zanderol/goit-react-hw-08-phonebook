@@ -1,32 +1,32 @@
-/* eslint-disable no-unused-vars */
-import Contact from 'components/Contact/Contact';
-import Loader from 'components/Loader';
-import NotFound from 'components/NotFound';
-import { List, Item } from './ContactList.styled';
-import { useGetContactsQuery } from 'redux/contacts/contact-api';
-import useFiltredContacts from 'hooks/useFiltredContacts';
+import { List, Title } from './ContactList.styled';
 
-function ContactList() {
-  const { data: contacts, isFetching, error } = useGetContactsQuery();
-  const { filteredContactList } = useFiltredContacts();
+import { useSelector } from 'react-redux';
+import { selectContacts } from 'redux/contacts/selectors';
+import { selectFilter } from 'redux/filter/selectors';
+import { ContactItem } from '../ContactItem/ContactItem';
+
+export const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  const visibleContacts = getVisibleContacts();
 
   return (
-    <>
-      {isFetching && <Loader />}
-      {error && <NotFound data={error.data} status={error.status} />}
+    <div>
+      <Title>Contact List</Title>
       <List>
-        {contacts &&
-          filteredContactList.map(({ id, name, number }) => {
-            console.log(filteredContactList);
-            return (
-              <Item key={id}>
-                <Contact id={id} name={name} number={number} />
-              </Item>
-            );
-          })}
+        {visibleContacts.map(contact => {
+          return <ContactItem key={contact.id} {...contact} />;
+        })}
       </List>
-    </>
+    </div>
   );
-}
-
-export default ContactList;
+};

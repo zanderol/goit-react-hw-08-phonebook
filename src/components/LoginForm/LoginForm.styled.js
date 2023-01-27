@@ -1,59 +1,40 @@
-import styled from '@emotion/styled';
-import { Field } from 'formik';
+import styled from 'styled-components';
 
 export const Title = styled.h2`
-  font-size: 26px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--main-text-color);
-  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #cca8e9;
+  border-radius: 10px 10px 0 0;
 `;
 
-export const Label = styled.label`
+export const Form = styled.form`
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #cadefc;
+  border-radius: 0 0 10px 10px;
+  border: 3px solid #cca8e9;
+`;
+
+export const LabelGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  align-items: flex-start;
 `;
 
-export const TitleInput = styled.span`
-  font-weight: 600;
-  color: var(--main-text-color);
-  margin-bottom: 5px;
+export const LabelTitle = styled.span`
+  display: inline-block;
+  margin: 5px;
+  text-align: start;
+  min-width: 80px;
+  font-weight: bold;
 `;
 
-export const Input = styled(Field)`
-  height: 40px;
-  padding: 0 10px 0 10px;
-  border: 1px solid var(--second-bg-color);
-  outline: none;
-  color: var(--main-text-color);
-  font-size: 14px;
-  :focus {
-    border-color: var(--accent-bg-color);
-  }
-  ::placeholder {
-    font-size: 12px;
-    color: var(--main-text-color);
-  }
-`;
-
-export const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 40px;
-  background-color: var(--accent-bg-color);
-  color: var(--second-text-color);
-  font-family: inherit;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--main-hover-animation);
-  :hover,
-  :focus {
-    background-color: var(--second-bg-color);
-  }
-  @media screen and (min-width: 768px) {
-    width: 300px;
+export const Input = styled.input`
+  border: 1px solid #cca8e9;
+  height: 20px;
+  &:hover,
+  &:focus {
+    outline: 1px solid #cca8e9;
   }
 `;

@@ -1,11 +1,9 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  border-bottom: 1px solid var(--second-bg-color);
-  padding-bottom: 30px;
-  @media screen and (min-width: 768px) {
+export const Header = styled.header`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 3px solid #cca8e9;
 `;
